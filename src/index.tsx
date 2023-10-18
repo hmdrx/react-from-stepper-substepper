@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import SubStepper from './stepper/SubStepper';
-import MainStepper from './stepper/MainStepper';
+import SubStepper from './components/stepper/SubStepper';
+import MainStepper from './components/stepper/MainStepper';
 import SwipeableViews from 'react-swipeable-views';
-import classes from './StepperSubStepper.module.css';
+import classes from './index.module.css';
 
 interface IProps {
   children?: React.ReactNode;
