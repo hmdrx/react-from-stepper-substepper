@@ -1,1 +1,1 @@
-export default './components/FormWithStepper.tsx';
+export { default } from './components/StepperSubStepper';

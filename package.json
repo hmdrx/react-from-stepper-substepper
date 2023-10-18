@@ -1,6 +1,6 @@
 {
   "name": "react-form-stepper-substepper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "form with stepper and substepper",
   "main": "index.ts",
   "scripts": {
@@ -11,18 +11,15 @@
     "url": "https://github.com/hmdrx/react-from-stepper-substepper.git"
   },
   "keywords": [
-    "react-form-stepper-substepper",
-    "react-stepper",
-    "react-form-stepper-with-substepper",
-    "form-stepper",
-    "form-substepper"
+    "react",
+    "stepper",
+    "substepper",
+    "form stepper",
+    "form substepper"
   ],
   "author": "Humendra <test.mernapp01@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.13",
     "react-swipeable-views": "^0.14.0"
   }
 }
