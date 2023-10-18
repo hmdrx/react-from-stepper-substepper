@@ -1,3 +1,4 @@
+import React from 'react';
 import classes from './MainStepper.module.css';
 
 interface IProps {

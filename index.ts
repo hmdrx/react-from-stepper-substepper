@@ -1,1 +1,1 @@
-export { default } from './components/StepperSubStepper';
+export { default } from './src/components/StepperSubStepper';

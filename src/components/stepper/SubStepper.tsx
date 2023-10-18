@@ -1,3 +1,4 @@
+import React from 'react';
 import classes from './SubStepper.module.css';
 
 interface IProps {
