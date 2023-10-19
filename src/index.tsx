@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import SubStepper from './components/stepper/SubStepper';
 import MainStepper from './components/stepper/MainStepper';
 import SwipeableViews from 'react-swipeable-views';
-import classes from './index.module.css';
 
 interface IProps {
-  children?: React.ReactNode;
   mainStepperList: string[];
   subStepperList: number[];
   NextButton: (handleNext: () => void) => React.JSX.Element;
   BackButton: (handleBack: () => void) => React.JSX.Element;
-  SaveAsDraftButton?: (saveAsDraft: Function) => React.JSX.Element;
+  children?: React.ReactNode;
+  SaveAsDraftButton?: (saveAsDraft: () => void) => React.JSX.Element;
   subStepperActiveColor?: string;
   subStepperInactiveColor?: string;
   IconInactive?: React.JSX.Element;
@@ -28,7 +27,7 @@ interface IProps {
   iconInProgressColor?: string;
 }
 
-const FormWithSlider = ({
+const StepperSubStepper = ({
   children,
   mainStepperList,
   subStepperList: subStepsListState,
@@ -91,7 +90,14 @@ const FormWithSlider = ({
   };
 
   return (
-    <div className={classes.container} style={containerStyle}>
+    <div
+      style={{
+        boxSizing: 'border-box',
+        width: '100%',
+        padding: '10px',
+        ...containerStyle,
+      }}
+    >
       <MainStepper
         subStepperList={subStepperList}
         currentSubStep={currentSubStep}
@@ -119,7 +125,13 @@ const FormWithSlider = ({
       {children && (
         <SwipeableViews index={slideIndex}>{children}</SwipeableViews>
       )}
-      <div className={classes['btn-holder']} style={containerBtnStyle}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          ...containerBtnStyle,
+        }}
+      >
         {BackButton(handleBack)}
         {SaveAsDraftButton && SaveAsDraftButton(() => {})}
         {NextButton(handleNext)}
@@ -128,4 +140,4 @@ const FormWithSlider = ({
   );
 };
 
-export default FormWithSlider;
+export default StepperSubStepper;

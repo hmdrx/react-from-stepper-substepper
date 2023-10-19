@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './MainStepper.module.css';
 
 interface IProps {
   mainStepperList: string[];
@@ -17,7 +16,7 @@ interface IProps {
   iconInProgressColor?: string;
 }
 
-const MainSteps = ({
+const MainStepper = ({
   mainStepperList,
   subStepperList,
   currentSubStep,
@@ -32,23 +31,50 @@ const MainSteps = ({
   iconInactiveColor,
   iconInProgressColor,
 }: IProps) => {
+  const radioStyle: React.CSSProperties = {
+    width: '16px',
+    height: '16px',
+    borderWidth: '2px',
+    borderStyle: 'solid',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    marginRight: '4px',
+  };
+  const radioInnerStyle: React.CSSProperties = {
+    width: '10px',
+    height: '10px',
+    borderRadius: '50%',
+  };
+
   return (
-    <div className={classes.container} style={containerMainStepperStyle}>
+    <div style={{ display: 'flex', ...containerMainStepperStyle }}>
       {mainStepperList.slice(0, mainStepperList.length - 1).map((el, index) => (
-        <div className={classes.steps}>
+        <div
+          style={{
+            display: 'flex',
+            flex: 1,
+            alignItems: 'center',
+            margin: '2px',
+          }}
+        >
           {(((index + 1 <= currentMainStep &&
             subStepperList[currentMainStep - 1] === currentSubStep) ||
             index + 1 < currentMainStep) &&
             ((IconComplete && IconComplete) || (
               <div
-                className={classes.radio}
                 style={{
-                  borderColor: iconCompleteColor,
+                  ...radioStyle,
+                  borderColor: iconCompleteColor || 'blue',
                 }}
               >
                 <div
-                  className={classes['radio-inner']}
-                  style={{ backgroundColor: iconCompleteColor }}
+                  style={{
+                    ...radioInnerStyle,
+                    backgroundColor: iconCompleteColor || 'blue',
+                  }}
                 />
               </div>
             ))) ||
@@ -56,46 +82,66 @@ const MainSteps = ({
               index + 1 <= currentMainStep &&
               ((IconInProgress && IconInProgress) || (
                 <div
-                  className={classes.radio}
-                  style={{ borderColor: iconInProgressColor }}
+                  style={{
+                    ...radioStyle,
+                    borderColor: iconInProgressColor || 'blue',
+                  }}
                 />
               ))) ||
             (IconInactive && IconInactive) || (
               <div
-                className={`${classes.radio} ${classes['radio-disabled']}`}
-                style={{ borderColor: iconInactiveColor }}
+                style={{
+                  ...radioStyle,
+                  borderColor: iconInactiveColor || 'grey',
+                }}
               />
             )}
           <p style={fontStyle}>{el}</p>
-          <div className={classes.liner} style={lineMainStepperStyle} />
+          <div
+            style={{
+              display: 'flex',
+              flex: 1,
+              height: '1px',
+              marginLeft: '4px',
+              marginRight: '4px',
+              backgroundColor: 'grey',
+              ...lineMainStepperStyle,
+            }}
+          />
         </div>
       ))}
-      <div className={classes['step-last']}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         {(((mainStepperList.length <= currentMainStep &&
           subStepperList[currentMainStep - 1] === currentSubStep) ||
           mainStepperList.length < currentMainStep) && (
           <div
-            className={classes.radio}
             style={{
-              borderColor: iconCompleteColor,
+              ...radioStyle,
+              borderColor: iconCompleteColor || 'blue',
             }}
           >
             <div
-              className={classes['radio-inner']}
-              style={{ backgroundColor: iconCompleteColor }}
+              style={{
+                ...radioInnerStyle,
+                backgroundColor: iconCompleteColor || 'blue',
+              }}
             />
           </div>
         )) ||
           (subStepperList[currentMainStep - 1] > currentSubStep &&
             mainStepperList.length <= currentMainStep && (
               <div
-                className={classes.radio}
-                style={{ borderColor: iconInProgressColor }}
+                style={{
+                  ...radioStyle,
+                  borderColor: iconInProgressColor || 'blue',
+                }}
               />
             )) || (
             <div
-              className={`${classes.radio} ${classes['radio-disabled']}`}
-              style={{ borderColor: iconInactiveColor }}
+              style={{
+                ...radioStyle,
+                borderColor: iconInactiveColor || 'grey',
+              }}
             />
           )}
         <p style={fontStyle}>{mainStepperList[mainStepperList.length - 1]}</p>
@@ -104,4 +150,4 @@ const MainSteps = ({
   );
 };
 
-export default MainSteps;
+export default MainStepper;

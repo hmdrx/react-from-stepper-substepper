@@ -1,6 +1,4 @@
 import React from 'react';
-import classes from './SubStepper.module.css';
-
 interface IProps {
   subStepperList: number[];
   completedSteps: number;
@@ -11,7 +9,7 @@ interface IProps {
   lineSubStepperStyle?: React.CSSProperties;
 }
 
-const SubStep = ({
+const SubStepper = ({
   subStepperList,
   currentMainStep,
   completedSteps,
@@ -22,7 +20,14 @@ const SubStep = ({
 }: IProps) => {
   if (subStepperList[currentMainStep] > 1) {
     return (
-      <div className={classes.container} style={containerSubStepperStyle}>
+      <div
+        style={{
+          display: 'flex',
+          marginTop: '10px',
+          padding: '5px',
+          ...containerSubStepperStyle,
+        }}
+      >
         {Array.from({ length: subStepperList[currentMainStep] }).map(
           (_, index) => {
             const dynamicStyle: React.CSSProperties = {
@@ -33,8 +38,16 @@ const SubStep = ({
             };
             return (
               <div
-                className={classes.liner}
-                style={{ ...lineSubStepperStyle, ...dynamicStyle }}
+                style={{
+                  background: 'gray',
+                  height: '2px',
+                  width: '100%',
+                  borderRadius: '5px',
+                  marginLeft: '5px',
+                  marginRight: '5px',
+                  ...lineSubStepperStyle,
+                  ...dynamicStyle,
+                }}
               />
             );
           }
@@ -46,4 +59,4 @@ const SubStep = ({
   }
 };
 
-export default SubStep;
+export default SubStepper;

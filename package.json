@@ -1,6 +1,6 @@
 {
   "name": "react-form-stepper-substepper",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "form with stepper and substepper",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
