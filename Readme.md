@@ -12,7 +12,7 @@ App.jsx
 
 ```
 import React, { useState } from 'react';
-import SSS from '.react-form-stepper-substepper';
+import SSS from 'react-form-stepper-substepper';
 import BasicForm from './BasicForm';
 
 const mainStepperList = ['Basic Details', 'Documents', 'Bank Details']; // list of main stepper
