@@ -9,7 +9,7 @@ interface IProps {
   NextButton: (handleNext: () => void) => React.JSX.Element;
   BackButton: (handleBack: () => void) => React.JSX.Element;
   children?: React.ReactNode;
-  SaveAsDraftButton?: (saveAsDraft: () => void) => React.JSX.Element;
+  SaveAsDraftButton?: React.JSX.Element;
   subStepperActiveColor?: string;
   subStepperInactiveColor?: string;
   IconInactive?: React.JSX.Element;
@@ -25,9 +25,10 @@ interface IProps {
   iconCompleteColor?: string;
   iconInactiveColor?: string;
   iconInProgressColor?: string;
+  backPreviousMainStep?: Boolean;
 }
 
-const StepperSubStepper = ({
+const SSS = ({
   children,
   mainStepperList,
   subStepperList: subStepsListState,
@@ -49,6 +50,7 @@ const StepperSubStepper = ({
   iconCompleteColor,
   iconInactiveColor,
   iconInProgressColor,
+  backPreviousMainStep = true,
 }: IProps) => {
   const [currentMainStep, setCurrentMainStep] = useState(1);
   const [currentSubStep, setCurrentSubStep] = useState(1);
@@ -132,12 +134,18 @@ const StepperSubStepper = ({
           ...containerBtnStyle,
         }}
       >
-        {BackButton(handleBack)}
-        {SaveAsDraftButton && SaveAsDraftButton(() => {})}
-        {NextButton(handleNext)}
+        {(backPreviousMainStep &&
+          currentSubStep !== currentMainStep &&
+          BackButton(handleBack)) ||
+          (currentSubStep !== 1 && BackButton(handleBack))}
+        <div style={{ marginLeft: 'auto' }}>
+          {subStepperList[currentMainStep - 1] === currentSubStep &&
+            SaveAsDraftButton}
+          {NextButton(handleNext)}
+        </div>
       </div>
     </div>
   );
 };
 
-export default StepperSubStepper;
+export default SSS;
