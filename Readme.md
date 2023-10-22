@@ -5,6 +5,7 @@
 ## Install:
 
 `npm install react-form-stepper-substepper`
+
 ![sample image](https://res.cloudinary.com/humendra/image/upload/v1697964523/Screenshot_20231019_200938_xiwdan.png)
 
 ## Usage:
